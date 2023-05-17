@@ -1,0 +1,43 @@
+body {
+    background-color: #013220; /* Dark green background, similar to blackjack table */
+    color: #ffffff; /* White text */
+    font-family: Arial, sans-serif; /* Simple, readable font */
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#drawn-cards {
+    display: flex;
+    justify-content: space-around; /* Space out the card images */
+    align-items: center;
+    width: 50%; /* Half the width of the viewport */
+    margin-bottom: 20px; /* Space below the cards */
+}
+
+#drawn-cards img {
+    width: 200px; /* Set width of card images */
+    height: auto; /* Maintain aspect ratio */
+    border: 1px solid #ffffff; /* White border around images */
+    border-radius: 10px; /* Rounded corners */
+}
+
+button {
+    background-color: #ffc107; /* Gold background, like betting chips */
+    color: #000000; /* Black text */
+    font-size: 20px; /* Large font size for readability */
+    padding: 10px 20px; /* Padding around text */
+    border: none; /* No border */
+    border-radius: 5px; /* Slightly rounded corners */
+    cursor: pointer; /* Hand cursor on hover */
+    margin: 10px; /* Space between buttons */
+}
+
+button:hover {
+    background-color: #ffca28; /* Slightly lighter color on hover */
+}
