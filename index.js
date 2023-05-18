@@ -30,8 +30,9 @@ let deckId = data.deck_id
 
 
 function drawCard() {
+    
     document.querySelector('#winner').innerHTML = ''
-document.querySelector('#winlose').innerHTML = ''
+    document.querySelector('#winlose').innerHTML = ''
 
 
 
@@ -62,22 +63,44 @@ document.querySelector('#winlose').innerHTML = ''
     p2War1Tag.src = ''
     p2War2Tag.src = ''
 
+    let card1Value = card1.value
+    let card2Value = card2.value
+
+    if (card1Value === 'JACK') {
+        card1Value = 12
+    } else if (card1Value === 'QUEEN') {
+        card1Value = 13
+    } else if (card1Value === 'KING') {
+        card1Value = 14
+    } else if (card1Value === 'ACE') {
+        card1Value = 15
+    }
+
+    if (card2Value === 'JACK') {
+        card2Value = 12
+    } else if (card2Value === 'QUEEN') {
+        card2Value = 13
+    } else if (card2Value === 'KING') {
+        card2Value = 14
+    } else if (card2Value === 'ACE') {
+        card2Value = 15
+    }
     
-   if (card1.value > card2.value) {
+   if (card1Value > card2Value) {
         player1Pile.push(card1, card2);
         player1Pile.splice(0, 1)
         player2Pile.splice(0, 1)
 
-        // document.querySelector('#winlose').innerHTML = 'You won this hand!'
+       
 
-        } else if (card1.value < card2.value) {
+    } else if (card1Value < card2Value) {
             player2Pile.push(card1, card2)
             player1Pile.splice(0, 1)
             player2Pile.splice(0, 1)
 
-            // document.querySelector('#winlose').innerHTML = 'You lost this hand!'
+           
 
-            } else {
+    } else {
                 document.querySelector('#winner').innerHTML = 'WAR!'
 
                 p1War1Tag.src = p1War1.image
@@ -91,18 +114,28 @@ document.querySelector('#winlose').innerHTML = ''
                     player1Pile.push(card1, card2, p1War1, p1War2, p2War1, p2War2);
                     player1Pile.splice(0, 3)
                     player2Pile.splice(0, 3)
-                    } else {
+                    document.querySelector('#winlose').innerHTML = 'You won the war'
+                } else {
                         player2Pile.push(card1, card2, p1War1, p1War2, p2War1, p2War2)
                         player1Pile.splice(0, 3)
                         player2Pile.splice(0, 3)
-                    };
+                        document.querySelector('#winlose').innerHTML = 'LOSER!'
+                };
     
 };
-document.querySelector('#player1counter').innerHTML = (player1Pile.length.toString())
-document.querySelector('#player2counter').innerHTML = (player2Pile.length.toString())
+document.querySelector('#player1counter').innerHTML = 'Player Cards: ' + (player1Pile.length.toString())
+document.querySelector('#player2counter').innerHTML = 'Dealer Cards: ' + (player2Pile.length.toString())
+checkWin()
 };
 
 
+function checkWin() {
+if (player1Pile.length === 52) {
+    alert('You Win :)')
+} else if (player2Pile.length === 52) {
+    alert('You Lose :(')
+}
+}
 
 
 
