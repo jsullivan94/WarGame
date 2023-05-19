@@ -24,14 +24,13 @@ let deckId = data.deck_id
     });
 
 });
-
 };
 
 
 
 function drawCard() {
     
-    document.querySelector('#winner').innerHTML = ''
+    document.querySelector('#war').innerHTML = ''
     document.querySelector('#winlose').innerHTML = ''
 
 
@@ -45,19 +44,14 @@ function drawCard() {
     
    
     let imageTag1 = document.querySelector('#card-imageOne')
-    imageTag1.src = card1.image
-
     let imageTag2 = document.querySelector('#card-imageTwo')
-    imageTag2.src = card2.image
-
     let p1War1Tag = document.querySelector('#p1war1')
     let p1War2Tag = document.querySelector('#p1war2')
-
     let p2War1Tag = document.querySelector('#p2war1')
     let p2War2Tag = document.querySelector('#p2war2')
 
-
-
+    imageTag1.src = card1.image
+    imageTag2.src = card2.image
     p1War1Tag.src = ''
     p1War2Tag.src = ''
     p2War1Tag.src = ''
@@ -85,6 +79,17 @@ function drawCard() {
     } else if (card2Value === 'ACE') {
         card2Value = 15
     }
+
+    // const cardValueObject = {
+    //     'JACK' : 12,
+    //     'QUEEN' : 13,
+    //     'KING' : 14,
+    //     'ACE' : 15,}
+    // //     if (card1Value === key) {
+    //         card1Value = cardValueObject[key];
+    //     }   if (card2Value === key) {
+    //         card2Value = cardValueObject[key]; 
+    // }
     
    if (card1Value > card2Value) {
         player1Pile.push(card1, card2);
@@ -101,7 +106,7 @@ function drawCard() {
            
 
     } else {
-                document.querySelector('#winner').innerHTML = 'WAR!'
+                document.querySelector('#war').innerHTML = 'WAR!'
 
                 p1War1Tag.src = p1War1.image
                 p1War2Tag.src = p1War2.image
@@ -110,30 +115,32 @@ function drawCard() {
                 p2War2Tag.src = p2War2.image
 
             
-                if (p1War1.value > p1War2.value) {
+                if (p1War2.value > p2War2.value) {
                     player1Pile.push(card1, card2, p1War1, p1War2, p2War1, p2War2);
                     player1Pile.splice(0, 3)
                     player2Pile.splice(0, 3)
-                    document.querySelector('#winlose').innerHTML = 'You won the war'
+                    document.querySelector('#winlose').innerHTML = 'Player 1 won the war!'
                 } else {
                         player2Pile.push(card1, card2, p1War1, p1War2, p2War1, p2War2)
                         player1Pile.splice(0, 3)
                         player2Pile.splice(0, 3)
-                        document.querySelector('#winlose').innerHTML = 'LOSER!'
+                        document.querySelector('#winlose').innerHTML = 'Player 2 won the war!'
                 };
     
 };
-document.querySelector('#player1counter').innerHTML = 'Player Cards: ' + (player1Pile.length.toString())
-document.querySelector('#player2counter').innerHTML = 'Dealer Cards: ' + (player2Pile.length.toString())
+document.querySelector('#player1counter').innerHTML = 'Player 1 Cards: ' + (player1Pile.length.toString())
+document.querySelector('#player2counter').innerHTML = 'Player 2 Cards: ' + (player2Pile.length.toString())
+
 checkWin()
 };
 
 
 function checkWin() {
 if (player1Pile.length === 52) {
-    alert('You Win :)')
+    alert('Player 1 wins!')
 } else if (player2Pile.length === 52) {
-    alert('You Lose :(')
+    alert('Player 2 wins!')
+    
 }
 }
 
@@ -144,16 +151,39 @@ if (player1Pile.length === 52) {
 document.querySelector('#newgame-button').addEventListener('click', () => {
     war()
     let imageTag1 = document.querySelector('#card-imageOne')
-    imageTag1.src = ""
-
-    
     let imageTag2 = document.querySelector('#card-imageTwo')
+    let p1War1Tag = document.querySelector('#p1war1')
+    let p1War2Tag = document.querySelector('#p1war2')
+    let p2War1Tag = document.querySelector('#p2war1')
+    let p2War2Tag = document.querySelector('#p2war2')
+
+    imageTag1.src = ""
     imageTag2.src = ""
+    p1War1Tag.src = ''
+    p1War2Tag.src = ''
+    p2War1Tag.src = ''
+    p2War2Tag.src = ''
+
+    document.querySelector('#bet-display').textContent = ''
+    document.querySelector('#player1counter').innerHTML = 'Player 1 Cards: 26'
+    document.querySelector('#player2counter').innerHTML = 'Player 2 Cards: 26'
+    document.querySelector('#war').innerHTML = ''
+    document.querySelector('#winlose').innerHTML = ''
 
 });
    
 
 document.querySelector('#draw-button').addEventListener('click', () => drawCard());
+
+
+document.querySelector('#bet-form').addEventListener('submit', (event) => {
+    event.preventDefault()
+    
+    document.querySelector('#bet-display').textContent = ('$' + document.querySelector('#bet').value)
+    document.querySelector('#bet-form').reset()
+})
+
+
 
 
 war();

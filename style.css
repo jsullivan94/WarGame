@@ -34,6 +34,17 @@ body {
     margin: 10px;
 }
 
+#button-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background: rgba(0,0,0,0.5);
+}
+
 button {
     padding: 10px 20px;
     margin: 10px;
@@ -68,4 +79,26 @@ h3 {
 #player2counter {
     right: 10px;
     top: 10px;
+}
+
+#bet-display {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#bet-form {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bet-form input[type="text"] {
+    margin-right: 10px;
+    padding: 5px;
 }
